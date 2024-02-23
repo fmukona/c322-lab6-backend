@@ -32,7 +32,9 @@ jobs:
           fail-on-error: true
 
       - name: Login to GitHub Container Registry
-        run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login --username fmukona --password-stdin ghcr.io
+        run: |
+          echo "${{ secrets.ACCESS_TOKEN }}" | docker login --username fmukona --password-stdin ghcr.io
+          docker info  # Debugging step to check Docker environment
 
       - name: Build and push the image
         run: |
